@@ -24,8 +24,8 @@ namespace ElasticSearchDataMigrationFunctionApp
 
         private static ElasticClient CreateElasticClient()
         {
-            var pool = new SingleNodeConnectionPool(new Uri("http://192.168.0.103:29200"));
-            var setting = new ConnectionSettings(pool).BasicAuthentication("elastic", "dorababu@123");
+            var pool = new SingleNodeConnectionPool(new Uri("http://172.19.20.98:9200"));
+            var setting = new ConnectionSettings(pool).BasicAuthentication("elastic", "Pel1t@sDev0ps");
             setting.DefaultIndex("tenantid");
             return new ElasticClient(setting);
         }

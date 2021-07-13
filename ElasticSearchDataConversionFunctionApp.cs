@@ -27,16 +27,16 @@ namespace ElasticSearchDataMigrationFunctionApp
         }
 
         [FunctionName("ELasticSearchDataConversionApp")]
-        public async Task RunAsync([BlobTrigger("patientfeedcontainer/{name}", Connection = "AzureWebJobsStorage")]Stream myBlob, string name, ILogger log)
+        public async Task RunAsync([BlobTrigger("patientvisitsua/{name}", Connection = "AzureWebJobsStorage")]Stream myBlob, string name, ILogger log)
         {
             // Console.WriteLine("Test Logger");
 
-            CloudStorageAccount account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=storageaccountipasnbb3a;AccountKey=HpqmldPFxepZmjFiOK8YN1jZbt7T4kIGSSszpNSIQjjWRYhi3GEzhgbfi1kr+JCnPzDvWi8vNlmrqK/+LdEO5g==;EndpointSuffix=core.windows.net");
+            @CloudStorageAccount account = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=ipasnonprdstorageaccount;AccountKey=tQwwcD6nWHQW643122qOci5IVAoU2BmqzTJCfT+nV7Gqf5Z1Pp90U6PCutKPMwvGco4AkA81sY3i3+RFs5mPaQ==;EndpointSuffix=core.windows.net");
             CloudBlobClient blobClient = account.CreateCloudBlobClient();
 
-            CloudBlobContainer SourceBlobContainer = blobClient.GetContainerReference("patientfeedcontainer");
-            CloudBlobContainer ProcessBlobContainer = blobClient.GetContainerReference("patientfeedprocessed");
-            CloudBlobContainer IgnoredBlobContainer = blobClient.GetContainerReference("patientfeedignored");
+            CloudBlobContainer SourceBlobContainer = blobClient.GetContainerReference("patientvisitsua");
+            CloudBlobContainer ProcessBlobContainer = blobClient.GetContainerReference("processedvisitsua");
+            CloudBlobContainer IgnoredBlobContainer = blobClient.GetContainerReference("ignoredvisitsua");
 
             CloudBlockBlob sourceBlob = SourceBlobContainer.GetBlockBlobReference(name);
 
